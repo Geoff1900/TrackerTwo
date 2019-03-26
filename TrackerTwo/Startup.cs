@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using TrackerTwo.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TrackerTwo.Services;
 
 namespace TrackerTwo
 {
@@ -41,6 +42,7 @@ namespace TrackerTwo
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton<ILicenceItemService, InMemoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

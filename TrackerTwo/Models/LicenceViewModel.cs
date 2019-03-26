@@ -7,6 +7,6 @@ namespace TrackerTwo.Models
 {
     public class LicenceViewModel
     {
-        public IEnumerable<LicenceItem> items { get; set; }
+        public IEnumerable<LicenceItem> Items { get; set; }
     }
 }
