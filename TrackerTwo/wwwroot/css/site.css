@@ -34,4 +34,7 @@ body {
     .carousel-caption {
         display: none;
     }
+    div.licence-panel {
+        margin-top: 25px
+    }
 }
