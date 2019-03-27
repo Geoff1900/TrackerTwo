@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TrackerTwo.Models;
 
 namespace TrackerTwo.Data
 {
@@ -12,5 +13,6 @@ namespace TrackerTwo.Data
             : base(options)
         {
         }
+        public DbSet<LicenceItem> LicenceItems { get; set; }
     }
 }

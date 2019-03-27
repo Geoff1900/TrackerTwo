@@ -10,14 +10,14 @@ namespace TrackerTwo.Controllers
 {
     public class LicenceController : Controller
     {
-        private readonly ILicenceItemService _inMemoryService;
-        public LicenceController(ILicenceItemService inMemoryService)
+        private readonly ILicenceItemService _licenceService;
+        public LicenceController(ILicenceItemService licenceService)
         {
-            _inMemoryService = inMemoryService;
+            _licenceService = licenceService;
         }
         public async Task<IActionResult> Index()
         {
-            return View(new LicenceViewModel() { Items = await _inMemoryService.getLicencesAsync() });
+            return View(new LicenceViewModel() { Items = await _licenceService.getLicencesAsync() });
         }
     }
 }
