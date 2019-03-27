@@ -22,5 +22,13 @@ namespace TrackerTwo.Services
             return await _context.LicenceItems.ToListAsync();
         }
 
+        public  async Task<bool> addLicenceItemAsync(LicenceItem licenceItem)
+        {
+            licenceItem.Id = Guid.NewGuid();
+            licenceItem.ExpiresOn = DateTimeOffset.Now.AddDays(365);
+           _context.LicenceItems.Add(licenceItem);
+            return await _context.SaveChangesAsync() ==1;
+        }
+
     }
 }

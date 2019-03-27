@@ -8,6 +8,11 @@ namespace TrackerTwo.Services
 {
     public class InMemoryService : ILicenceItemService
     {
+        public async Task<bool> addLicenceItemAsync(LicenceItem licenceItem)
+        {
+            return await Task.FromResult<bool>(true);
+        }
+
         public Task<IEnumerable<LicenceItem>> getLicencesAsync()
         {
             var item1 = new LicenceItem()

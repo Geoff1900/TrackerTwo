@@ -19,5 +19,23 @@ namespace TrackerTwo.Controllers
         {
             return View(new LicenceViewModel() { Items = await _licenceService.getLicencesAsync() });
         }
+
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddLicenceItem(LicenceItem licenceItem)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var success = await _licenceService.addLicenceItemAsync(licenceItem);
+
+            if (!success)
+            {
+                return BadRequest("Item could not be added!");
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }

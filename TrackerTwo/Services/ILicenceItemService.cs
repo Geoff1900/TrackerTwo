@@ -9,5 +9,7 @@ namespace TrackerTwo.Services
    public interface ILicenceItemService
     {
         Task<IEnumerable<LicenceItem>> getLicencesAsync();
+
+        Task<bool> addLicenceItemAsync(LicenceItem licenceItem);
     }
 }

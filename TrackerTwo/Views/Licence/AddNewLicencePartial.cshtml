@@ -1,0 +1,10 @@
+﻿
+@model LicenceItem
+    
+<form asp-action="AddLicenceItem" method="post">
+    <label asp-for="User">Add a new User</label>
+    <input asp-for="User" />
+    <label asp-for="Key">Add a Key</label>
+    <input asp-for="Key" />
+    <button type="submit">Add</button>
+</form>
