@@ -23,7 +23,10 @@
         {
         <tr>
             <td>
-                <input type="checkbox" class="done-checkbox" />
+                <form asp-action="DisableLicence" method="post">
+                    <input type="checkbox" class="done-checkbox" />
+                    <hidden id =" Id "value="@item.Id" />
+                </form>
             </td>
             <td>@item.User</td>
             <td>@item.Id</td>
