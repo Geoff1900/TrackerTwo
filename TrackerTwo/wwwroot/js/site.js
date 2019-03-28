@@ -5,11 +5,11 @@
 
 $(document).ready(function () {
     $('.done-checkbox').on('click', function (e) {
-        markDisabled(e.target);
+        DisableLicenceItem(e.target);
     });
 });
 
-function markDisabled(checkbox) {
+function DisableLicenceItem(checkbox) {
     checkbox.disabled = true;
     var row = checkbox.closest('tr');
     $(row).addClass('done');
