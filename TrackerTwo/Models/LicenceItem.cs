@@ -17,5 +17,7 @@ namespace TrackerTwo.Models
         public string Key { get; set; }
 
         public DateTimeOffset? ExpiresOn { get; set;}
+
+        public bool IsDisabled { get; set; }
     }
 }
