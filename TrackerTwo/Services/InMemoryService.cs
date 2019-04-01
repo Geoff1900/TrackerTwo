@@ -13,6 +13,11 @@ namespace TrackerTwo.Services
             return await Task.FromResult<bool>(true);
         }
 
+        public Task<bool> disableLicence(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<LicenceItem>> getLicencesAsync()
         {
             var item1 = new LicenceItem()

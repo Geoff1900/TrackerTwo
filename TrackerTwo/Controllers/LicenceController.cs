@@ -37,5 +37,10 @@ namespace TrackerTwo.Controllers
             return RedirectToAction("Index");
         }
 
+        //public async Task<IActionResult> DisableLicence()
+        //{
+            
+        //}
+
     }
 }

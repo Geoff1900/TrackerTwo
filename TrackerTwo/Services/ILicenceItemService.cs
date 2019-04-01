@@ -11,5 +11,7 @@ namespace TrackerTwo.Services
         Task<IEnumerable<LicenceItem>> getLicencesAsync();
 
         Task<bool> addLicenceItemAsync(LicenceItem licenceItem);
+
+        Task<bool> disableLicence(Guid id);
     }
 }

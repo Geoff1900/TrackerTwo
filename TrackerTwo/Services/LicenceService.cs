@@ -30,5 +30,9 @@ namespace TrackerTwo.Services
             return await _context.SaveChangesAsync() ==1;
         }
 
+        public Task<bool> disableLicence(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

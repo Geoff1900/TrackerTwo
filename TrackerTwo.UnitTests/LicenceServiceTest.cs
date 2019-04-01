@@ -16,10 +16,12 @@ namespace TrackerTwo.UnitTests
         [Fact]
         public async Task DisableLicenceItem_ValidLicenceItemID_ReturnsTrue()
         {
-           var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(databaseName: "Test_DisableLicenceItem").Options;
+            //Arrange
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(databaseName: "Test_DisableLicenceItem").Options;
             using (var context = new ApplicationDbContext(options))
             {
                 var service = new LicenceService(context);
+                //Act
                 await service.addLicenceItemAsync(new LicenceItem
                 {
                     User = "Sandra?",
@@ -27,15 +29,14 @@ namespace TrackerTwo.UnitTests
                 });
             };
 
-
+            //Assert
             using (var context = new ApplicationDbContext(options))
             {
                 Assert.Equal(1, await context.LicenceItems.CountAsync());
             }
-
-
-
         }
+
+      
 
     }
 }
