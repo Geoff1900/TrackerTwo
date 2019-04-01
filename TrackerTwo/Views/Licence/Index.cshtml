@@ -16,6 +16,7 @@
                 <td>Id</td>
                 <td>Licence Key</td>
                 <td>Expires</td>
+                <td>Not Current</td>
             </tr>
         </thead>
 
@@ -25,13 +26,14 @@
             <td>
                 <form asp-action="DisableLicence" method="post">
                     <input type="checkbox" class="done-checkbox" />
-                    <hidden id =" Id "value="@item.Id" />
+                    <input type ="hidden" name="Id" value="@item.Id" />
                 </form>
             </td>
             <td>@item.User</td>
             <td>@item.Id</td>
             <td>@item.Key</td>
             <td>@item.ExpiresOn.Humanize()</td>
+            <td>@item.IsDisabled</td>
         </tr>
         }
     </table>

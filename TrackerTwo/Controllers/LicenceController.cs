@@ -38,14 +38,14 @@ namespace TrackerTwo.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DisableLicence(Guid id)
+        public async Task<IActionResult> DisableLicence(Guid Id)
         {
-            if( id == Guid.Empty)
+            if( Id == Guid.Empty)
             {
                 return RedirectToAction("Index");
             }
 
-            if (!await _licenceService.disableLicenceItemAsync(id))
+            if (!await _licenceService.disableLicenceItemAsync(Id))
             {
                 return BadRequest("Could not disable licence");
             }
