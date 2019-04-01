@@ -12,6 +12,8 @@ namespace TrackerTwo.Services
 
         Task<bool> addLicenceItemAsync(LicenceItem licenceItem);
 
-        Task<bool> disableLicence(Guid id);
+        Task<bool> disableLicenceItemAsync(Guid id);
+
+        Task<LicenceItem> FindLicenceAsync(string User);
     }
 }

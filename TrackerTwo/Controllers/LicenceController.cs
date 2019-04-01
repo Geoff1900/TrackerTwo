@@ -37,10 +37,22 @@ namespace TrackerTwo.Controllers
             return RedirectToAction("Index");
         }
 
-        //public async Task<IActionResult> DisableLicence()
-        //{
-            
-        //}
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DisableLicence(Guid id)
+        {
+            if( id == Guid.Empty)
+            {
+                return RedirectToAction("Index");
+            }
+
+            if (!await _licenceService.disableLicenceItemAsync(id))
+            {
+                return BadRequest("Could not disable licence");
+            }
+
+            return RedirectToAction("Index");
+
+        }
 
     }
 }

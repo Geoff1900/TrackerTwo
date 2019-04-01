@@ -14,10 +14,10 @@ namespace TrackerTwo.UnitTests
     {
 
         [Fact]
-        public async Task DisableLicenceItem_ValidLicenceItemID_ReturnsTrue()
+        public async Task addLicenceItem_ValidLicenceItem_ReturnsTrue()
         {
             //Arrange
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(databaseName: "Test_DisableLicenceItem").Options;
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(databaseName: "TestAddLicenceItem").Options;
             using (var context = new ApplicationDbContext(options))
             {
                 var service = new LicenceService(context);
@@ -36,7 +36,23 @@ namespace TrackerTwo.UnitTests
             }
         }
 
-      
-
+        [Fact]
+        public async Task disableLicenceItem_ValidLicenceID_ReturnsTrue()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(databaseName: "TestDisableLicenceItem").Options;
+            using (var context = new ApplicationDbContext(options))
+            {
+                var service = new LicenceService(context);
+                string User = "Sandra?";
+                await service.addLicenceItemAsync(new LicenceItem
+                {
+                    User = User,
+                    Key = "qwerty?",
+                    IsDisabled = false
+                });
+                var licenceItem = await service.FindLicenceAsync(User);
+                Assert.True(await service.disableLicenceItemAsync(licenceItem.Id));
+            }
+        }
     }
 }

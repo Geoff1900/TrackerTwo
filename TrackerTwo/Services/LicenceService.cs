@@ -30,9 +30,19 @@ namespace TrackerTwo.Services
             return await _context.SaveChangesAsync() ==1;
         }
 
-        public Task<bool> disableLicence(Guid id)
+        public async Task<bool> disableLicenceItemAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var licenceItem = await _context.LicenceItems.Where(x => x.Id== id).SingleOrDefaultAsync();
+
+            if (licenceItem == null) return false;
+
+            licenceItem.IsDisabled = true;
+            return await _context.SaveChangesAsync() == 1;
+        }
+
+        public async Task<LicenceItem> FindLicenceAsync(string user)
+        {
+            return await _context.LicenceItems.Where(x => x.User == user).SingleOrDefaultAsync();
         }
     }
-}
+} 
