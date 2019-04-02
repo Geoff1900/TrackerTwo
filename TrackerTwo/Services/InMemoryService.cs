@@ -8,12 +8,12 @@ namespace TrackerTwo.Services
 {
     public class InMemoryService : ILicenceItemService
     {
-        public async Task<bool> addLicenceItemAsync(LicenceItem licenceItem)
+        public async Task<bool> addLicenceItemAsync(LicenceItem licenceItem, string user)
         {
             return await Task.FromResult<bool>(true);
         }
 
-        public async Task<bool> disableLicenceItemAsync(Guid id)
+        public async Task<bool> disableLicenceItemAsync(Guid id, string user)
         {
             throw new NotImplementedException();
         }
@@ -23,7 +23,7 @@ namespace TrackerTwo.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<LicenceItem>> getLicencesAsync()
+        public async Task<IEnumerable<LicenceItem>> getLicencesAsync(string user)
         {
             var item1 = new LicenceItem()
             {

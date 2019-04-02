@@ -8,11 +8,11 @@ namespace TrackerTwo.Services
 {
    public interface ILicenceItemService
     {
-        Task<IEnumerable<LicenceItem>> getLicencesAsync();
+        Task<IEnumerable<LicenceItem>> getLicencesAsync(string user);
 
-        Task<bool> addLicenceItemAsync(LicenceItem licenceItem);
+        Task<bool> addLicenceItemAsync(LicenceItem licenceItem, string user);
 
-        Task<bool> disableLicenceItemAsync(Guid id);
+        Task<bool> disableLicenceItemAsync(Guid id, string user);
 
         Task<LicenceItem> FindLicenceAsync(string User);
     }

@@ -26,7 +26,7 @@ namespace TrackerTwo.UnitTests
                 {
                     User = "Sandra?",
                     Key = "qwerty?"
-                });
+                },"test");
             };
 
             //Assert
@@ -49,9 +49,9 @@ namespace TrackerTwo.UnitTests
                     User = User,
                     Key = "qwerty?",
                     IsDisabled = false
-                });
+                }, "test");
                 var licenceItem = await service.FindLicenceAsync(User);
-                Assert.True(await service.disableLicenceItemAsync(licenceItem.Id));
+                Assert.True(await service.disableLicenceItemAsync(licenceItem.Id,"test"));
             }
         }
     }

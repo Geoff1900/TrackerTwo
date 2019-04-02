@@ -17,22 +17,23 @@ namespace TrackerTwo.Services
         {
             _context = context;
         }
-        public async Task<IEnumerable<LicenceItem>> getLicencesAsync()
+        public async Task<IEnumerable<LicenceItem>> getLicencesAsync(string user)
         {
-            return await _context.LicenceItems.ToListAsync();
+            return await _context.LicenceItems.Where(x=>x.AdminUser == user).ToListAsync();
         }
 
-        public  async Task<bool> addLicenceItemAsync(LicenceItem licenceItem)
+        public  async Task<bool> addLicenceItemAsync(LicenceItem licenceItem, string user)
         {
             licenceItem.Id = Guid.NewGuid();
             licenceItem.ExpiresOn = DateTimeOffset.Now.AddDays(365);
+            licenceItem.AdminUser = user;
            _context.LicenceItems.Add(licenceItem);
             return await _context.SaveChangesAsync() ==1;
         }
 
-        public async Task<bool> disableLicenceItemAsync(Guid id)
+        public async Task<bool> disableLicenceItemAsync(Guid id, string user)
         {
-            var licenceItem = await _context.LicenceItems.Where(x => x.Id== id).SingleOrDefaultAsync();
+            var licenceItem = await _context.LicenceItems.Where(x => x.Id== id && x.AdminUser ==user).SingleOrDefaultAsync();
 
             if (licenceItem == null) return false;
 

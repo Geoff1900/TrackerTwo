@@ -2,22 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TrackerTwo.Models;
 using TrackerTwo.Services;
 
 namespace TrackerTwo.Controllers
 {
+    [Authorize]
     public class LicenceController : Controller
     {
         private readonly ILicenceItemService _licenceService;
-        public LicenceController(ILicenceItemService licenceService)
+        private readonly UserManager<IdentityUser> _userManager;
+        public LicenceController(ILicenceItemService licenceService, UserManager<IdentityUser> userManager)
         {
             _licenceService = licenceService;
+            _userManager = userManager;
         }
         public async Task<IActionResult> Index()
         {
-            return View(new LicenceViewModel() { Items = await _licenceService.getLicencesAsync() });
+            //var x = User;
+            
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null) return Challenge();
+            return View(new LicenceViewModel() { Items = await _licenceService.getLicencesAsync(currentUser.UserName) });
         }
 
         [ValidateAntiForgeryToken]
@@ -28,7 +37,10 @@ namespace TrackerTwo.Controllers
                 return RedirectToAction("Index");
             }
 
-            var success = await _licenceService.addLicenceItemAsync(licenceItem);
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null) return Challenge();
+
+            var success = await _licenceService.addLicenceItemAsync(licenceItem, currentUser.UserName);
 
             if (!success)
             {
@@ -44,8 +56,10 @@ namespace TrackerTwo.Controllers
             {
                 return RedirectToAction("Index");
             }
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null) return Challenge();
 
-            if (!await _licenceService.disableLicenceItemAsync(Id))
+            if (!await _licenceService.disableLicenceItemAsync(Id, currentUser.UserName))
             {
                 return BadRequest("Could not disable licence");
             }
