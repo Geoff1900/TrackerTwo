@@ -37,6 +37,8 @@ namespace TrackerTwo.Services
 
             if (licenceItem == null) return false;
 
+            _context.Entry(licenceItem).State = EntityState.Modified;
+
             licenceItem.IsDisabled = true;
             return await _context.SaveChangesAsync() == 1;
         }
