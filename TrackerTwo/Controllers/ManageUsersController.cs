@@ -11,7 +11,7 @@ using TrackerTwo.Models;
 namespace TrackerTwo.Controllers
 {
 
-    [Authorize(Roles = Constants.AdministratorRole)]
+   
     public class ManageUsersController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
