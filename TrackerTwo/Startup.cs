@@ -38,10 +38,11 @@ namespace TrackerTwo
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
+            //Replaced below with IdentityHostingStartup.cs
             //services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>();
             //services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            //services.AddIdentity<IdentityUser, IdentityRole>().AddRoleManager<RoleManager<IdentityRole>>().AddEntityFrameworkStores<ApplicationDbContext>();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //services.AddSingleton<ILicenceItemService, InMemoryService>();
@@ -67,7 +68,8 @@ namespace TrackerTwo
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
+            //app.UseIdentity(); Thought I may have to use this method as I'm using .Net Core 2.0 approach rather than .Net 2.1. See IdentityHostingStartup.cs for info
+        
 
             app.UseMvc(routes =>
             {
