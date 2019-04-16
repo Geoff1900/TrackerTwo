@@ -16,17 +16,17 @@ namespace TrackerTwo
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
             await EnsureRolesAsync(roleManager);
 
-            var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+            var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
             await EnsureTestAdminAsync(userManager);
         }
 
-        private static async Task EnsureTestAdminAsync(UserManager<IdentityUser> userManager)
+        private static async Task EnsureTestAdminAsync(UserManager<ApplicationUser> userManager)
         {
             var testAdmin = await userManager.Users.Where(x => x.UserName == "admin2@todo.local").SingleOrDefaultAsync();
 
             if (testAdmin != null) return;
 
-            testAdmin = new IdentityUser
+            testAdmin = new ApplicationUser
             {
                 UserName = "admin2@todo.local",
                 Email = "admin1@todo.local"

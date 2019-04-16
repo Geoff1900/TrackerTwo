@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TrackerTwo.Data;
+using TrackerTwo.Models;
 
 [assembly: HostingStartup(typeof(TrackerTwo.Areas.Identity.IdentityHostingStartup))]
 namespace TrackerTwo.Areas.Identity
@@ -22,7 +23,7 @@ namespace TrackerTwo.Areas.Identity
                 //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-                services.AddIdentity<IdentityUser, IdentityRole>()
+                services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddRoleManager<RoleManager<IdentityRole>>()
         .AddDefaultUI()
         .AddDefaultTokenProviders()

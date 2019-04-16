@@ -14,8 +14,8 @@ namespace TrackerTwo.Controllers
     public class LicenceController : Controller
     {
         private readonly ILicenceItemService _licenceService;
-        private readonly UserManager<IdentityUser> _userManager;
-        public LicenceController(ILicenceItemService licenceService, UserManager<IdentityUser> userManager)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public LicenceController(ILicenceItemService licenceService, UserManager<ApplicationUser> userManager)
         {
             _licenceService = licenceService;
             _userManager = userManager;
