@@ -22,14 +22,14 @@ namespace TrackerTwo
 
         private static async Task EnsureTestAdminAsync(UserManager<IdentityUser> userManager)
         {
-            var testAdmin = await userManager.Users.Where(x => x.UserName == "admin@todo.local").SingleOrDefaultAsync();
+            var testAdmin = await userManager.Users.Where(x => x.UserName == "admin2@todo.local").SingleOrDefaultAsync();
 
             if (testAdmin != null) return;
 
             testAdmin = new IdentityUser
             {
-                UserName = "admin@todo.local",
-                Email = "admin@todo.local"
+                UserName = "admin2@todo.local",
+                Email = "admin1@todo.local"
             };
             await userManager.CreateAsync(testAdmin, "NotSecure123!!");
             await userManager.AddToRoleAsync(testAdmin, Constants.AdministratorRole);

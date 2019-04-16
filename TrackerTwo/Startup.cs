@@ -38,9 +38,10 @@ namespace TrackerTwo
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>();
             //services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddIdentity<IdentityUser, IdentityRole>().AddRoleManager<RoleManager<IdentityRole>>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //services.AddSingleton<ILicenceItemService, InMemoryService>();
@@ -66,6 +67,7 @@ namespace TrackerTwo
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
 
             app.UseMvc(routes =>
             {
