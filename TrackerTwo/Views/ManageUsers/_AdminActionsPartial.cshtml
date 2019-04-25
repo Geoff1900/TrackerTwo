@@ -10,6 +10,6 @@
 
     if(await userManager.IsInRoleAsync(currentUser, Constants.AdministratorRole) == true)
     {
-        <script>alert('Hello World');</script>
+    <li><a asp-area="" asp-controller="ManageUsers" asp-action="Index">Manage Users</a></li>
     }
 }
